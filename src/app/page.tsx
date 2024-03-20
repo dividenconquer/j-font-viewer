@@ -7,9 +7,9 @@ import { useEffect, useRef, useState } from "react";
 let startTime: number;
 
 export default function Home() {
-  const text = isEmpty(localStorage.getItem("text")?.trim())
+  const text = isEmpty(window.localStorage.getItem("text")?.trim())
     ? "oxfont"
-    : localStorage.getItem("text")!;
+    : window.localStorage.getItem("text")!;
   const [paused, setPaused] = useState(false);
   const [fontLoaded, setFontLoaded] = useState(false);
   const [fontIndex, setFontIndex] = useState(
@@ -71,7 +71,7 @@ export default function Home() {
     const text = isEmpty(textRef.current?.innerText)
       ? "oxfont"
       : textRef.current!.innerText!;
-    localStorage.setItem("text", text);
+    window.localStorage.setItem("text", text);
   };
 
   const onFocus = () => {
