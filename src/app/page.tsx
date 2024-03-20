@@ -96,15 +96,22 @@ export default function Home() {
 
   const textRef = useRef<HTMLSpanElement>(null);
 
+  const mouseOverTimeoutRef = useRef<number | null>(null);
+
   const handleMouseOver = (index: number) => {
+    mouseOverTimeoutRef.current && clearTimeout(mouseOverTimeoutRef.current);
     paused.current = true;
     setIconIndex(index);
+    setFontIndex(new Array(text.length).fill(0));
+    setText((text) => text.toLowerCase());
   };
   const handleMouseOut = (index: number) => {
     if (index === iconIndex) return;
-    paused.current = false;
-    setIconIndex(-1);
-    animationFrame.current = requestAnimationFrame(draw);
+    mouseOverTimeoutRef.current = setTimeout(() => {
+      paused.current = false;
+      setIconIndex(-1);
+      animationFrame.current = requestAnimationFrame(draw);
+    }, 100) as unknown as number;
   };
 
   return (
