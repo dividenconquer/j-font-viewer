@@ -115,14 +115,14 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="absolute flex inset-0 flex-col items-center justify-between">
       <div />
 
       <div>
         {assetLoaded && (
           <span
             ref={textRef}
-            className="text-8xl"
+            className="text-6xl md:text-8xl"
             style={{ letterSpacing: 10 }}
           >
             {text.split("").map((letter, index) =>
